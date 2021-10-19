@@ -1,0 +1,35 @@
+/*
+Find the missing letter in the passed letter range and return it.
+
+If all letters are present in the range, return undefined.
+*/
+
+function fearNotLetter(str) {
+  const abcs = 'abcdefghijklmnopqrstuvwxyz';
+  let sectStart = abcs.indexOf(str.charAt(0));
+  let sectEnd = abcs.indexOf(str.charAt(str.length - 1));
+  let sect = abcs.split('').slice(sectStart, sectEnd + 1);
+  let i = 0;
+  while (str[i] === sect[i] && i < sect.length) {
+    i++
+  }
+  return sect[i];
+}
+
+console.log(fearNotLetter("abce"), fearNotLetter("abce") === 'd');
+console.log(fearNotLetter("abcdefghjklmno"), fearNotLetter("abcdefghjklmno") === 'i');
+console.log(fearNotLetter("stvwx"), fearNotLetter("stvwx") === 'u');
+console.log(fearNotLetter("bcdf"), fearNotLetter("bcdf") === 'e');
+console.log(fearNotLetter("abcdefghijklmnopqrstuvwxyz"), fearNotLetter("abcdefghijklmnopqrstuvwxyz") === undefined);
+
+/*
+fearNotLetter("abce") should return the string d.
+
+fearNotLetter("abcdefghjklmno") should return the string i.
+
+fearNotLetter("stvwx") should return the string u.
+
+fearNotLetter("bcdf") should return the string e.
+
+fearNotLetter("abcdefghijklmnopqrstuvwxyz") should return undefined.
+*/

@@ -1,32 +1,25 @@
 /*
-Find the missing letter in the passed letter range and return it.
+Write a function that takes two or more arrays and returns a new array of unique values in the order of the original provided arrays.
 
-If all letters are present in the range, return undefined.
+In other words, all values present from all arrays should be included in their original order, but with no duplicates in the final array.
+
+The unique numbers should be sorted by their original order, but the final array should not be sorted in numerical order.
+
+Check the assertion tests for examples.
 */
 
-function fearNotLetter(str) {
-  const abcs = 'abcdefghijklmnopqrstuvwxyz';
-  let sectStart = abcs.indexOf(str.charAt(0));
-  let sectEnd = abcs.indexOf(str.charAt(str.length - 1));
-  let sect = abcs.split('').slice(sectStart, sectEnd + 1);
-  for(let i = 0; i < sect.length; i++);
-  return sect;
+function uniteUnique(arr) {
+  return arr;
 }
 
-console.log(fearNotLetter("abce"), fearNotLetter("abce") === 'd');
-console.log(fearNotLetter("abcdefghjklmno"), fearNotLetter("abcdefghjklmno") === 'i');
-console.log(fearNotLetter("stvwx"), fearNotLetter("stvwx") === 'u');
-console.log(fearNotLetter("bcdf"), fearNotLetter("bcdf") === 'e');
-console.log(fearNotLetter("abcdefghijklmnopqrstuvwxyz"), fearNotLetter("abcdefghijklmnopqrstuvwxyz") === undefined);
+console.log(uniteUnique([1, 3, 2], [5, 2, 1, 4], [2, 1]), JSON.stringify(uniteUnique([1, 3, 2], [5, 2, 1, 4], [2, 1])) === JSON.stringify([1, 3, 2, 5, 4]));
+console.log(uniteUnique([1, 2, 3], [5, 2, 1]), JSON.stringify(uniteUnique([1, 2, 3], [5, 2, 1])) === JSON.stringify([1, 2, 3, 5]));
+console.log(uniteUnique([1, 2, 3], [5, 2, 1, 4], [2, 1], [6, 7, 8]), JSON.stringify(uniteUnique([1, 2, 3], [5, 2, 1, 4], [2, 1], [6, 7, 8])) === JSON.stringify([1, 2, 3, 5, 4, 6, 7, 8]));
 
 /*
-fearNotLetter("abce") should return the string d.
+uniteUnique([1, 3, 2], [5, 2, 1, 4], [2, 1]) should return [1, 3, 2, 5, 4].
 
-fearNotLetter("abcdefghjklmno") should return the string i.
+uniteUnique([1, 2, 3], [5, 2, 1]) should return [1, 2, 3, 5].
 
-fearNotLetter("stvwx") should return the string u.
-
-fearNotLetter("bcdf") should return the string e.
-
-fearNotLetter("abcdefghijklmnopqrstuvwxyz") should return undefined.
+uniteUnique([1, 2, 3], [5, 2, 1, 4], [2, 1], [6, 7, 8]) should return [1, 2, 3, 5, 4, 6, 7, 8].
 */
