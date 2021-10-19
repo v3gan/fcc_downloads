@@ -1,0 +1,13 @@
+function mutation(arr) {
+  let re;
+  for(let i = 0; i < arr[1].length; i++){
+    re = RegExp(arr[1][i], "i");
+    //if(arr[0].toLowerCase().indexOf(arr[1][i].toLowerCase()) == -1){
+    if(!re.test(arr[0])){
+      return false
+    }
+  }
+  return true;
+}
+
+console.log(mutation(["hello", "Hello"]));

@@ -1,0 +1,15 @@
+function destroyer(arr) {
+  const args = [...arguments];
+  const boats = args[0];
+  let aftermath = [...boats];
+  if(args.length > 1){
+    let missiles = args.slice(1, args.length + 1);
+    for(let i = 0; i < missiles.length; i++){
+      aftermath = aftermath.filter(boat => boat != missiles[i]);
+    }
+  }
+  return aftermath;
+}
+
+let r = destroyer([1, 2, 3, 1, 2, 3], 2, 3);
+console.log(r);
