@@ -1,39 +1,38 @@
 /*
-Write a function that takes two or more arrays and returns a new array of unique values in the order of the original provided arrays.
-
-In other words, all values present from all arrays should be included in their original order, but with no duplicates in the final array.
-
-The unique numbers should be sorted by their original order, but the final array should not be sorted in numerical order.
-
-Check the assertion tests for examples.
+Convert the characters &, <, >, " (double quote), and ' (apostrophe), in a string to their corresponding HTML entities.
 */
 
-function uniteUnique(arr) {
-  let args = [...arguments];
-  let joined = args.reduce((accumulator, arg) => {
-    return [...accumulator, ...arg];   
-  });
-  let union = joined.reduce((accumulator, value) => {
-    if(accumulator.indexOf(value) >= 0){
-      return accumulator;
-    }
-    else {
-      return [...accumulator, value];
-    }
-  },[]); 
-  return union;
+function convertHTML(str) {
+  const entities = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&apos;'
+  }
+  return str;
 }
 
-//console.log(uniteUnique([1, 3, 2], [5, 2, 1, 4], [2, 1]));
-
- console.log(uniteUnique([1, 3, 2], [5, 2, 1, 4], [2, 1]), JSON.stringify(uniteUnique([1, 3, 2], [5, 2, 1, 4], [2, 1])) === JSON.stringify([1, 3, 2, 5, 4]));
- console.log(uniteUnique([1, 2, 3], [5, 2, 1]), JSON.stringify(uniteUnique([1, 2, 3], [5, 2, 1])) === JSON.stringify([1, 2, 3, 5]));
- console.log(uniteUnique([1, 2, 3], [5, 2, 1, 4], [2, 1], [6, 7, 8]), JSON.stringify(uniteUnique([1, 2, 3], [5, 2, 1, 4], [2, 1], [6, 7, 8])) === JSON.stringify([1, 2, 3, 5, 4, 6, 7, 8]));
+console.log(convertHTML("Dolce & Gabbana"), convertHTML("Dolce & Gabbana") === 'Dolce &amp; Gabbana');
+console.log(convertHTML("Hamburgers < Pizza < Tacos"), convertHTML("Hamburgers < Pizza < Tacos") === 'Hamburgers &lt; Pizza &lt; Tacos');
+console.log(convertHTML("Sixty > twelve"), convertHTML("Sixty > twelve") === 'Sixty &gt; twelve');
+console.log(convertHTML('Stuff in "quotation marks"'), convertHTML('Stuff in "quotation marks"') === 'Stuff in &quot;quotation marks&quot;');
+console.log(convertHTML("Schindler's List"), convertHTML("Schindler's List") === 'Schindler&apos;s List');
+console.log(convertHTML("<>"), convertHTML("<>") === '&lt;&gt;');
+console.log(convertHTML("abc"), convertHTML("abc") === 'abc');
 
 /*
-uniteUnique([1, 3, 2], [5, 2, 1, 4], [2, 1]) should return [1, 3, 2, 5, 4].
+convertHTML("Dolce & Gabbana") should return the string Dolce &amp; Gabbana.
 
-uniteUnique([1, 2, 3], [5, 2, 1]) should return [1, 2, 3, 5].
+convertHTML("Hamburgers < Pizza < Tacos") should return the string Hamburgers &lt; Pizza &lt; Tacos.
 
-uniteUnique([1, 2, 3], [5, 2, 1, 4], [2, 1], [6, 7, 8]) should return [1, 2, 3, 5, 4, 6, 7, 8].
+convertHTML("Sixty > twelve") should return the string Sixty &gt; twelve.
+
+convertHTML('Stuff in "quotation marks"') should return the string Stuff in &quot;quotation marks&quot;.
+
+convertHTML("Schindler's List") should return the string Schindler&apos;s List.
+
+convertHTML("<>") should return the string &lt;&gt;.
+
+convertHTML("abc") should return the string abc.
 */
