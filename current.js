@@ -10,7 +10,7 @@ function convertHTML(str) {
     '"': '&quot;',
     "'": '&apos;'
   }
-  return str;
+  return entities[`&`];
 }
 
 console.log(convertHTML("Dolce & Gabbana"), convertHTML("Dolce & Gabbana") === 'Dolce &amp; Gabbana');
