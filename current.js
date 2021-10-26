@@ -1,38 +1,36 @@
 /*
-Convert the characters &, <, >, " (double quote), and ' (apostrophe), in a string to their corresponding HTML entities.
+Given a positive integer num, return the sum of all odd Fibonacci numbers that are less than or equal to num.
+
+The first two numbers in the Fibonacci sequence are 1 and 1. Every additional number in the sequence is the sum of the two previous numbers. The first six numbers of the Fibonacci sequence are 1, 1, 2, 3, 5 and 8.
+
+For example, sumFibs(10) should return 10 because all odd Fibonacci numbers less than or equal to 10 are 1, 1, 3, and 5.
 */
 
-function convertHTML(str) {
-  const entities = {
-    '&': '&amp;',
-    '<': '&lt;',
-    '>': '&gt;',
-    '"': '&quot;',
-    "'": '&apos;'
+function sumFibs(num) {
+  console.log('num',num);
+  if(num === 1){
+    return num + (num - 1);
   }
-  return str.replace(/[&<>"']/g, (match) => entities[match]);;
+  sumFibs(num - 1);
 }
-
-console.log(convertHTML("Dolce & Gabbana"), convertHTML("Dolce & Gabbana") === 'Dolce &amp; Gabbana');
-console.log(convertHTML("Hamburgers < Pizza < Tacos"), convertHTML("Hamburgers < Pizza < Tacos") === 'Hamburgers &lt; Pizza &lt; Tacos');
-console.log(convertHTML("Sixty > twelve"), convertHTML("Sixty > twelve") === 'Sixty &gt; twelve');
-console.log(convertHTML('Stuff in "quotation marks"'), convertHTML('Stuff in "quotation marks"') === 'Stuff in &quot;quotation marks&quot;');
-console.log(convertHTML("Schindler's List"), convertHTML("Schindler's List") === 'Schindler&apos;s List');
-console.log(convertHTML("<>"), convertHTML("<>") === '&lt;&gt;');
-console.log(convertHTML("abc"), convertHTML("abc") === 'abc');
+sumFibs(10);
+// console.log(sumFibs(1), !Number.isNaN(sumFibs(1)));
+// console.log(sumFibs(1000), sumFibs(1000) === 1785);
+// console.log(sumFibs(4000000), sumFibs(4000000) === 4613732);
+// console.log(sumFibs(4), sumFibs(4) === 5);
+// console.log(sumFibs(75024), sumFibs(75024) === 60696);
+// console.log(sumFibs(75025), sumFibs(75025) === 135721);
 
 /*
-convertHTML("Dolce & Gabbana") should return the string Dolce &amp; Gabbana.
+sumFibs(1) should return a number.
 
-convertHTML("Hamburgers < Pizza < Tacos") should return the string Hamburgers &lt; Pizza &lt; Tacos.
+sumFibs(1000) should return 1785.
 
-convertHTML("Sixty > twelve") should return the string Sixty &gt; twelve.
+sumFibs(4000000) should return 4613732.
 
-convertHTML('Stuff in "quotation marks"') should return the string Stuff in &quot;quotation marks&quot;.
+sumFibs(4) should return 5.
 
-convertHTML("Schindler's List") should return the string Schindler&apos;s List.
+sumFibs(75024) should return 60696.
 
-convertHTML("<>") should return the string &lt;&gt;.
-
-convertHTML("abc") should return the string abc.
+sumFibs(75025) should return 135721.
 */
