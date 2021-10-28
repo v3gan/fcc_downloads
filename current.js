@@ -7,13 +7,24 @@ For example, sumFibs(10) should return 10 because all odd Fibonacci numbers less
 */
 
 function sumFibs(num) {
-  console.log('num',num);
-  if(num === 1){
-    return num + (num - 1);
+  let fib = [1]
+  if (num === 1){
+    return fib;
+  } else {
+    fib.push(1);
+    let x = 0;   
+    let sum = fib[x] + fib[x+1];
+    while(sum <= num) {      
+      fib.push(sum);
+      x++;
+      sum = fib[x] + fib[x+1];
+    }
+    return fib;
   }
-  sumFibs(num - 1);
+  
 }
-sumFibs(10);
+
+console.log(sumFibs(10));
 // console.log(sumFibs(1), !Number.isNaN(sumFibs(1)));
 // console.log(sumFibs(1000), sumFibs(1000) === 1785);
 // console.log(sumFibs(4000000), sumFibs(4000000) === 4613732);
