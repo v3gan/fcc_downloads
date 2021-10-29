@@ -1,47 +1,26 @@
 /*
-Given a positive integer num, return the sum of all odd Fibonacci numbers that are less than or equal to num.
 
-The first two numbers in the Fibonacci sequence are 1 and 1. Every additional number in the sequence is the sum of the two previous numbers. The first six numbers of the Fibonacci sequence are 1, 1, 2, 3, 5 and 8.
+A prime number is a whole number greater than 1 with exactly two divisors: 1 and itself. For example, 2 is a prime number because it is only divisible by 1 and 2. In contrast, 4 is not prime since it is divisible by 1, 2 and 4.
 
-For example, sumFibs(10) should return 10 because all odd Fibonacci numbers less than or equal to 10 are 1, 1, 3, and 5.
+Rewrite sumPrimes so it returns the sum of all prime numbers that are less than or equal to num.
+
 */
 
-function sumFibs(num) {
-  let fib = [1]
-  if (num === 1){
-    return fib;
-  } else {
-    fib.push(1);
-    let x = 0;   
-    let sum = fib[x] + fib[x+1];
-    while(sum <= num) {      
-      fib.push(sum);
-      x++;
-      sum = fib[x] + fib[x+1];
-    }
-    return fib;
-  }
-  
+function sumPrimes(num) {
+  return num;
 }
 
-console.log(sumFibs(10));
-// console.log(sumFibs(1), !Number.isNaN(sumFibs(1)));
-// console.log(sumFibs(1000), sumFibs(1000) === 1785);
-// console.log(sumFibs(4000000), sumFibs(4000000) === 4613732);
-// console.log(sumFibs(4), sumFibs(4) === 5);
-// console.log(sumFibs(75024), sumFibs(75024) === 60696);
-// console.log(sumFibs(75025), sumFibs(75025) === 135721);
+sumPrimes(10);
+console.log(sumPrimes(10), !Number.isNaN(sumPrimes(1)));
+console.log(sumPrimes(10), sumPrimes(10) === 17);
+console.log(sumPrimes(977), sumPrimes(977) === 73156);
 
 /*
-sumFibs(1) should return a number.
 
-sumFibs(1000) should return 1785.
+sumPrimes(10) should return a number.
 
-sumFibs(4000000) should return 4613732.
+sumPrimes(10) should return 17.
 
-sumFibs(4) should return 5.
+sumPrimes(977) should return 73156.
 
-sumFibs(75024) should return 60696.
-
-sumFibs(75025) should return 135721.
 */
