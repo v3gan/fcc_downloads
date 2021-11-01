@@ -7,13 +7,31 @@ Rewrite sumPrimes so it returns the sum of all prime numbers that are less than 
 */
 
 function sumPrimes(num) {
-  return num;
+  let sum = 0;
+  for(let i = 2; i <= num; i++){
+    if(isPrime(i)) {
+      sum += i;
+    }
+  }
+  return sum;
 }
 
-sumPrimes(10);
+function isPrime(num){
+  if(num === 1){
+    return false;
+  }
+  for(let i = 2; i < num; i++){
+    if(num%i == 0){
+      return false;
+    }
+  }
+  return true;
+}
+
 console.log(sumPrimes(10), !Number.isNaN(sumPrimes(1)));
 console.log(sumPrimes(10), sumPrimes(10) === 17);
 console.log(sumPrimes(977), sumPrimes(977) === 73156);
+console.log(sumPrimes(2), sumPrimes(2) === 2);
 
 /*
 
