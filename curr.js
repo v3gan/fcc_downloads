@@ -8,6 +8,14 @@ function steamrollArray(arr) {
   return JSON.stringify(arr);
 }
 
+function getNonArrayValues(arr, flat) {
+  if(Array.isArray(arr[0])){
+    getNonArrayValues(arr[0], flat);
+  } else {
+    flat.push(arr[0]);
+  }
+}
+
 let x = steamrollArray([[["a"]], [["b"]]]);
 console.log(x, JSON.stringify(x) == JSON.stringify(["a", "b"]));
 
