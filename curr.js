@@ -4,25 +4,37 @@ Flatten a nested array. You must account for varying levels of nesting.
 
 */
 
-function steamrollArray(arr) {
-  arr.forEach(ele => {
-    
-  });
-  return JSON.stringify(arr[arr.length]);
-}
-
-function getNonArrayValues(arr, flat) {
-  if(!Array.isArray(arr[0])){
-    flat.push(arr[0]);
-  } else {
-    arr.forEach(item => {
-      getNonArrayValues(item, flat);
-    });
-    return flat;
+function steamrollArray(arr) {  
+let flattest = [];
+for(let i = 0; i < arr.length; i++){
+    if(Array.isArray(arr[i])){
+      for(let j = 0; j < arr[i].length; j++){
+        if(Array.isArray(arr[j])){
+          // for...
+        } else {
+          // push...
+        }
+        // increment j
+      }
+    } else {
+      flattest.push(arr[i])
+    }
+    // increment i
   }
 }
 
-console.log(getNonArrayValues([1]), [])
+// source array
+// counter
+// length
+// dest array
+let flattest = [];
+
+function getNonArrayValues(source, counter) {
+  
+}
+
+console.log(flattest);
+console.log(getNonArrayValues([[["a"]], [["b"]]], []));
 
 // let x = steamrollArray([[["a"]], [["b"]]]);
 // console.log(x, JSON.stringify(x) == JSON.stringify(["a", "b"]));
