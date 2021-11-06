@@ -1,0 +1,22 @@
+call    0
+counter 0
+source  [['a'], 'b']
+length  2
+target  []
+return  
+
+call    1
+counter 0
+source  ['a']
+length  1
+target  []
+return 
+
+call    2
+counter 1
+source  ['a']
+length  1
+target  ['a']
+return  ['a']
+
+`
