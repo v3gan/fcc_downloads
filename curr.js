@@ -1,64 +1,58 @@
 /*
 
-Create a function that sums two arguments together. If only one argument is provided, then return a function that expects one argument and returns the sum.
+Fill in the object constructor with the following methods below:
 
-For example, addTogether(2, 3) should return 5, and addTogether(2) should return a function.
+getFirstName()
+getLastName()
+getFullName()
+setFirstName(first)
+setLastName(last)
+setFullName(firstAndLast)
 
-Calling this returned function with a single argument will then return the sum:
-
-  var sumTwoAnd = addTogether(2);
-
-sumTwoAnd(3) returns 5.
-
-If either argument isn't a valid number, return undefined.
+Run the tests to see the expected output for each method. The methods that take an argument must accept only one argument and it has to be a string. These methods must be the only available means of interacting with the object.
 
 */
 
 
-function addTogether(x, y) {
-  if (Number.isInteger(x)){
-    if(y){
-      if(Number.isInteger(y)){
-        return x + y;  
-      } else {
-        return undefined;
-      }  
-    }
-    return function(z) { 
-      if (Number.isInteger(z)) {
-        return x + z;
-      } 
-      return undefined;
-    }
-  }
-  return undefined;
-}
+const Person = function(firstAndLast) {
+  // Only change code below this line
+  // Complete the method below and implement the others similarly
+  this.getFullName = function() {
+    return firstAndLast;
+  };
+  return firstAndLast;
+};
 
-let x = addTogether(2,3);
-console.log(x, x === 5);
-x = addTogether(23,30);
-console.log(x, x === 53);
-x = addTogether(5)(7);
-console.log(x, x === 12);
-x = addTogether("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
-console.log(x, x === undefined);
-x = addTogether(2,"3");
-console.log(x, x === undefined);
-x = addTogether(2,([3]));
-console.log(x, x === undefined);
+const bob = new Person('Bob Ross');
+let x = bob instanceof Person;
+console.log(x, x === true);
+x = bob.getFullName();
+console.log(x, x === 'Bob Ross');
 
 /*
 
-addTogether(2, 3) should return 5.
+No properties should be added. Object.keys(bob).length should always return 6.
 
-addTogether(23, 30) should return 53.
+bob instanceof Person should return true.
 
-addTogether(5)(7) should return 12.
+bob.firstName should return undefined.
 
-addTogether("https://www.youtube.com/watch?v=dQw4w9WgXcQ") should return undefined.
+bob.lastName should return undefined.
 
-addTogether(2, "3") should return undefined.
+bob.getFirstName() should return the string Bob.
 
-addTogether(2)([3]) should return undefined.
+bob.getLastName() should return the string Ross.
+
+bob.getFullName() should return the string Bob Ross.
+
+bob.getFullName() should return the string Haskell Ross after bob.setFirstName("Haskell").
+
+bob.getFullName() should return the string Haskell Curry after bob.setLastName("Curry").
+
+bob.getFullName() should return the string Haskell Curry after bob.setFullName("Haskell Curry").
+
+bob.getFirstName() should return the string Haskell after bob.setFullName("Haskell Curry").
+
+bob.getLastName() should return the string Curry after bob.setFullName("Haskell Curry").
 
 */
