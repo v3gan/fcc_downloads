@@ -69,8 +69,12 @@ function CashRegister(drawer) {
       .map(val => [...val, Math.round(val[1]/denomValue[val[0]]), Math.floor(amount / denomValue[val[0]]) ]).reverse();
 
     let change = denomCount.reduce((prev, current) => {
-      
-    }, amount);
+      if(prev > 0){
+        if(current[3] > 0) {
+          return [...prev, [current[0], current[3], (amount - (current[3] * denomValue[current[0]]))]];
+        }
+      }
+    }, []);
 
     console.log(denomCount);
 
