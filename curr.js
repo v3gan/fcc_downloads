@@ -66,33 +66,47 @@ function CashRegister(drawer) {
     }
 
     let denomCount = this.cid
-      .map(val => [...val, Math.round(val[1]/denomValue[val[0]]), Math.floor(amount / denomValue[val[0]]) ]).reverse();
-
-    let change = denomCount.reduce((prev, current) => {
-      if(prev > 0){
-        if(current[3] > 0) {
-          return [...prev, [current[0], current[3], (amount - (current[3] * denomValue[current[0]]))]];
-        }
-      }
-    }, []);
+      .map(val => {
+        let qtyInDrawer = Math.round(val[1] / denomValue[val[0]]);
+        let qtyNeeded = Math.floor(amount / denomValue[val[0]]);
+        return [...val, qtyInDrawer, qtyNeeded > qtyInDrawer ? qtyInDrawer : qtyNeeded]; 
+      }).reverse(); 
 
     console.log(denomCount);
 
-    return [['QUARTER', amount/denomValue.NICKEL]];
+    let change = denomCount.reduce((prev, current) => {
+      console.log('prev');
+      console.log(prev);
+      console.log('current');
+      console.log(current);
+
+      let denomination = current[0];
+      let qty = current[3];
+      let rem = prev.length == 0 ? amount : prev[prev.length - 1][2];
+      if(qty > 0 && rem > 0){
+        let val = qty * denomValue[denomination];
+        rem = rem - val;
+        let pull = [denomination, val, rem];
+        prev.push(pull);
+        return prev;
+      }
+      return prev;
+    }, []);
+
+    return change.map(i => [i[0], i[1]]);
   }
 }
 
 function checkCashRegister(price, cash, cid) {
-  //console.log(cid[0]);
   const register = new CashRegister(cid);
   let x = register.doTransaction(price, cash);
   return x; //register.doTransaction(price, cash);
 }
 
-let x = checkCashRegister(19.25, 20, [["PENNY", 1.01], ["NICKEL", 2.05], ["DIME", 3.1], ["QUARTER", 4.25], ["ONE", 90], ["FIVE", 55], ["TEN", 20], ["TWENTY", 60], ["ONE HUNDRED", 100]]);
-console.log(x, JSON.stringify(x) === JSON.stringify({status: "OPEN", change: [["QUARTER", 0.5]]}));
-// x = checkCashRegister(3.26, 100, [["PENNY", 1.01], ["NICKEL", 2.05], ["DIME", 3.1], ["QUARTER", 4.25], ["ONE", 90], ["FIVE", 55], ["TEN", 20], ["TWENTY", 60], ["ONE HUNDRED", 100]])
-// console.log(x, JSON.stringify(x) === JSON.stringify({status: "OPEN", change: [["TWENTY", 60], ["TEN", 20], ["FIVE", 15], ["ONE", 1], ["QUARTER", 0.5], ["DIME", 0.2], ["PENNY", 0.04]]}));
+// let x = checkCashRegister(19.50, 20, [["PENNY", 1.01], ["NICKEL", 2.05], ["DIME", 3.1], ["QUARTER", 4.25], ["ONE", 90], ["FIVE", 55], ["TEN", 20], ["TWENTY", 60], ["ONE HUNDRED", 100]]);
+// console.log(x, JSON.stringify(x) === JSON.stringify({status: "OPEN", change: [["QUARTER", 0.5]]}));
+let x = checkCashRegister(3.26, 100, [["PENNY", 1.01], ["NICKEL", 2.05], ["DIME", 3.1], ["QUARTER", 4.25], ["ONE", 90], ["FIVE", 55], ["TEN", 20], ["TWENTY", 60], ["ONE HUNDRED", 100]])
+console.log(x, JSON.stringify(x) === JSON.stringify({status: "OPEN", change: [["TWENTY", 60], ["TEN", 20], ["FIVE", 15], ["ONE", 1], ["QUARTER", 0.5], ["DIME", 0.2], ["PENNY", 0.04]]}));
 // x = checkCashRegister(19.5, 20, [["PENNY", 0.01], ["NICKEL", 0], ["DIME", 0], ["QUARTER", 0], ["ONE", 0], ["FIVE", 0], ["TEN", 0], ["TWENTY", 0], ["ONE HUNDRED", 0]]);
 // console.log(x, JSON.stringify(x) === JSON.stringify({status: "INSUFFICIENT_FUNDS", change: []}));
 // x = checkCashRegister(19.5, 20, [["PENNY", 0.01], ["NICKEL", 0], ["DIME", 0], ["QUARTER", 0], ["ONE", 1], ["FIVE", 0], ["TEN", 0], ["TWENTY", 0], ["ONE HUNDRED", 0]]);
