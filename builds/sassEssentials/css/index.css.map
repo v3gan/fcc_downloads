@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAEA,AAAA,OAAO,CAAC;EACN,UAAU,EAAE,MAAM;CACnB;;AACD,AAAA,UAAU;AACV,EAAE,CAAC;EACD,KAAK,EAPM,GAAG;CAQf",
+    "sources": [
+        "../../../Front End Libs/sass/index.scss"
+    ],
+    "names": [],
+    "file": "index.css"
+}
