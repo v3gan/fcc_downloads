@@ -58,7 +58,7 @@ class QuoteBox extends React.Component {
                 <Author author={this.state.currentQuote.author}/>
                 <div className="d-flex justify-content-between mt-3">
                     <button id="new-quote" className="btn btn-primary" onClick={this.getNewQuote}>New Quote</button>
-                    <a id="tweet-quote" href="twitter.com/intent/tweet" className="btn btn-primary">Tweet</a>
+                    <a id="tweet-quote" href={'https://twitter.com/intent/tweet?hashtags=quotes&related=freecodecamp&text=' + encodeURIComponent('"' + this.state.currentQuote.quote + '" ' + this.state.currentQuote.author)} className="btn btn-primary" target="_top"><i className="fa fa-twitter"></i></a>
                 </div>
             </div>
         );
