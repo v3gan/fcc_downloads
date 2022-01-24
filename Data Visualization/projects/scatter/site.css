@@ -1,0 +1,19 @@
+.doping {
+    fill: orange;
+}
+
+.no-doping {
+    fill: green;
+}
+
+#tooltip {
+    position: absolute;
+    width: 150px;
+    height: auto;
+    pointer-events: none;
+    background-color: pink;
+    border-radius: 10px;
+    box-shadow: 1px 1px 10px;
+    padding: 5px;
+  }
+  
