@@ -76,10 +76,12 @@ fetch(dataUrl)
       .call(yAxis);
 
     svg
-      .selectAll('circle')
+      .selectAll()
+      //.selectAll('circle')
       .data(data)
-      .enter()
-      .append('circle')
+      //.enter()
+      //.append('circle')
+      .join('circle')
       .attr('class', 'dot')
       .attr('data-xvalue', (d) => d.Year)
       .attr('data-yvalue', (d) => new Date(baseDate + d.Seconds * 1000))

@@ -1,11 +1,3 @@
-.doping {
-    fill: orange;
-}
-
-.no-doping {
-    fill: green;
-}
-
 #tooltip {
     position: absolute;
     width: 150px;
