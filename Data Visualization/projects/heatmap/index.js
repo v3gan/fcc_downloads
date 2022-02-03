@@ -22,6 +22,16 @@ d3.json(dataUrl)
     const domainY = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
     const minmaxData = d3.extent(data.monthlyVariance.map(d => data.baseTemperature + d.variance))    
 
+    /*
+    Band scales are like ordinal scales except the output range is continuous and numeric. Discrete output values are 
+    automatically computed by the scale by dividing the continuous range into uniform bands. Band scales are typically 
+    used for bar charts with an ordinal or categorical dimension. The unknown value of a band scale is effectively 
+    undefined: they do not allow implicit domain construction.
+
+    Unlike continuous scales, ordinal scales have a discrete domain and range. For example, an ordinal scale might map 
+    a set of named categories to a set of colors, or determine the horizontal positions of columns in a column chart.
+    */
+
     const xScale = d3
       .scaleBand()
       .domain(domainX)
@@ -34,6 +44,13 @@ d3.json(dataUrl)
       .rangeRound([h - padding, padding])
       .padding(0);
 
+    /*
+    Quantize scales are similar to linear scales, except they use a discrete rather than continuous range. 
+    The continuous input domain is divided into uniform segments based on the number of values in (i.e., the cardinality of) 
+    the output range. Each range value y can be expressed as a quantized linear function of the domain 
+    value x: y = m round(x) + b. See this choropleth for an example.
+    */
+   
     const colorScale = d3
       .scaleQuantize()
       .domain(minmaxData)
